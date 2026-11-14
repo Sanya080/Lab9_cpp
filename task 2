@@ -1,0 +1,45 @@
+// Лабораторна робота №9. Завдання 2, варіант 7
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    const double X0 = 0, X1 = 2, Y0 = 1, Y1 = 2, H = 0.2;
+
+    int nx = (int)floor((X1 - X0) / H + 1e-9) + 1;
+    int ny = (int)floor((Y1 - Y0) / H + 1e-9) + 1;
+
+    cout << "Табуляція функції f(x, y) = ln(1 + sqrt(x + y))" << endl;
+    cout << "x від " << X0 << " до " << X1 << ", y від " << Y0 << " до " << Y1
+         << ", крок обох змінних " << H << endl << endl;
+
+    cout << fixed << setprecision(1);
+    cout << "  x \\ y |";
+    for (int j = 0; j < ny; j++)
+        cout << setw(8) << Y0 + j * H;
+    cout << endl;
+
+    cout << "--------+";
+    for (int j = 0; j < ny; j++)
+        cout << "--------";
+    cout << endl;
+
+    for (int i = 0; i < nx; i++)
+    {
+        double x = X0 + i * H;
+
+        cout << setw(7) << fixed << setprecision(1) << x << " |";
+
+        for (int j = 0; j < ny; j++)
+        {
+            double y = Y0 + j * H;
+            double f = log(1 + sqrt(x + y));
+            cout << setw(8) << fixed << setprecision(4) << f;
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
